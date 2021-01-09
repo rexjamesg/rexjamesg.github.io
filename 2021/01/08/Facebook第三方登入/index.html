@@ -20,28 +20,35 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Rex 學習紀錄">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="Facebook第三方登入[TOC]  ios 13xcode 12.2  Cocoapods安裝首先必須先安裝 cocoapods123gem install cocoapodssudo gem install cocoapods 初始化Pod至專案目錄下指令 1pod init 完成後會再專案根目錄出現Pod的檔案，點開編輯輸入 12345678target &#39;你的專案名稱&#39;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Facebook第三方登入">
+<meta property="og:url" content="http://example.com/2021/01/08/Facebook%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5/index.html">
 <meta property="og:site_name" content="Rex 學習紀錄">
+<meta property="og:description" content="Facebook第三方登入[TOC]  ios 13xcode 12.2  Cocoapods安裝首先必須先安裝 cocoapods123gem install cocoapodssudo gem install cocoapods 初始化Pod至專案目錄下指令 1pod init 完成後會再專案根目錄出現Pod的檔案，點開編輯輸入 12345678target &#39;你的專案名稱&#39;">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-01-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-01-09T10:08:02.574Z">
 <meta property="article:author" content="Rex Lin">
+<meta property="article:tag" content="Facebook">
+<meta property="article:tag" content="登入">
+<meta property="article:tag" content="程式">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2021/01/08/Facebook%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-tw'
   };
 </script>
 
-  <title>Rex 學習紀錄</title>
+  <title>Facebook第三方登入 | Rex 學習紀錄</title>
   
 
 
@@ -140,81 +147,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/09/%E5%B7%A5%E7%A8%8B%E5%B8%AB%E6%80%9D%E7%B6%AD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Rex Lin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Rex 學習紀錄">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/09/%E5%B7%A5%E7%A8%8B%E5%B8%AB%E6%80%9D%E7%B6%AD/" class="post-title-link" itemprop="url">工程師的思維</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-01-09 00:00:00 / Modified: 18:10:33" itemprop="dateCreated datePublished" datetime="2021-01-09T00:00:00+08:00">2021-01-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="工程師思維"><a href="#工程師思維" class="headerlink" title="工程師思維"></a>工程師思維</h1><p>[TOC]</p>
-<h2 id="對工程師迷思"><a href="#對工程師迷思" class="headerlink" title="對工程師迷思?"></a>對工程師迷思?</h2><p><strong>一直不斷的寫專案就會變厲害？</strong></p>
-<p>對一半，頻繁的寫程式能增加該語言的熟悉度，並能在需要時輕鬆的調用適合的函式，但是要精進繼續還是需要花時間替別去研究</p>
-<p>若工程師長期處於無腦的撰寫程式，該工程師的使用年限會降低，由於無法有期間來提昇自我技術，將會漸漸的被新技術所淘汰。</p>
-<h2 id="為何不使用下班時間做技術提升動作？"><a href="#為何不使用下班時間做技術提升動作？" class="headerlink" title="為何不使用下班時間做技術提升動作？"></a>為何不使用下班時間做技術提升動作？</h2><p>學習新技術也需要耗費精力與腦力，若工作本身已經消費大量精神，則下班後需要適時的休息，良好的狀態才能有效吸收新技術。</p>
-<p>相信一位全職運動員也無法在經歷一整天的鍛鍊之後，回家還繼續提升自我的體能。</p>
-<h2 id="如何取得平衡？"><a href="#如何取得平衡？" class="headerlink" title="如何取得平衡？"></a>如何取得平衡？</h2><p>當專案開發進入維護階段時，可以修正錯誤與研發新技術輪流進行，可以將習得的新技術用於新研發的功能</p>
-<p>缺乏維護的程式不僅會面對時代趨勢的衝擊，也會面對使用者的淘汰。</p>
-<h2 id="應有的態度"><a href="#應有的態度" class="headerlink" title="應有的態度?"></a>應有的態度?</h2><p>一位工程師應該要有的態度並不是坐等別人餵食新技術，而是需要主動去找尋適合的新技術，並加以應用在公司專案上，藉此才能有效發揮專長，提高公司收益。</p>
-<h2 id="常常聽到程式架構，為何架構重要？"><a href="#常常聽到程式架構，為何架構重要？" class="headerlink" title="常常聽到程式架構，為何架構重要？"></a>常常聽到程式架構，為何架構重要？</h2><p>架構就等於房子的藍圖，良好的架構才能讓房子住的安心，假設建築師因為一時貪快，將房子管線隨意配置，房子還新的時候固然不會有事，當房子老舊缺乏維護時，將會面臨到無法維護，需要打掉重練的窘境，完全是得不償失。</p>
-<p>程式也一樣，良好的架構是為了增加穩定度、更好維護、更好除錯且方便做交接。</p>
-<p>若是一昧單純的以撰寫速度或代碼量去判斷一個工程師的優劣，</p>
-<h2 id="為何工程師注重程式碼大於想法或收益？"><a href="#為何工程師注重程式碼大於想法或收益？" class="headerlink" title="為何工程師注重程式碼大於想法或收益？"></a>為何工程師注重程式碼大於想法或收益？</h2><p>由於到頭來程式碼還是工程師自己維護，如果為了貪快而亂寫會導致日後更新速度大副減低，嚴重則是無法交接。<br>例如今天環境區域是統一請人打掃，那大家就比較不會對整潔有太高的關注，若今天環境區域是自己負責，任何的問題都是自己的負擔，負責人會變得格外注重環境整潔。<br>攸關自我的事情，人有較高的關注度，這是人性。</p>
-<h3 id="附上一張圖"><a href="#附上一張圖" class="headerlink" title="附上一張圖:"></a>附上一張圖:</h3><p>許多現實的事情就是這樣<br><img src="https://i.imgur.com/Dta2xSZ.png"></p>
-<h6 id="tags-心得-程式"><a href="#tags-心得-程式" class="headerlink" title="tags: 心得 程式"></a>tags: <code>心得</code> <code>程式</code></h6>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
@@ -230,10 +166,9 @@
       <meta itemprop="name" content="Rex 學習紀錄">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/08/Facebook%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5/" class="post-title-link" itemprop="url">Facebook第三方登入</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Facebook第三方登入
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -276,7 +211,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Facebook第三方登入"><a href="#Facebook第三方登入" class="headerlink" title="Facebook第三方登入"></a>Facebook第三方登入</h1><p>[TOC]</p>
+        <h1 id="Facebook第三方登入"><a href="#Facebook第三方登入" class="headerlink" title="Facebook第三方登入"></a>Facebook第三方登入</h1><p>[TOC]</p>
 <blockquote>
 <p>ios 13<br>xcode 12.2</p>
 </blockquote>
@@ -309,21 +244,35 @@
 <h3 id="處理轉跳"><a href="#處理轉跳" class="headerlink" title="處理轉跳"></a>處理轉跳</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//按下登入鈕後，畫面會跳轉到網頁，進行帳號密碼確認，此方法實作確認完帳號密碼後，畫面跳轉回原ViewController</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="keyword">_</span> app: UIApplication, <span class="keyword">open</span> url: URL, options: [UIApplication.OpenURLOptionsKey : <span class="keyword">Any</span>] = [:])</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">let</span> facebookLogin <span class="operator">=</span> <span class="type">FacebookLogin</span>.openURL(app, <span class="keyword">open</span>: url, options: options)<span class="operator">****</span></span><br><span class="line">    <span class="keyword">return</span> facebookLogin</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="在需要呼叫第三方登入的viewController呼叫即可"><a href="#在需要呼叫第三方登入的viewController呼叫即可" class="headerlink" title="在需要呼叫第三方登入的viewController呼叫即可"></a>在需要呼叫第三方登入的viewController呼叫即可</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FacebookLogin</span>.login(viewController: <span class="keyword">self</span>) &#123; (token) <span class="keyword">in</span></span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h6 id="tags-Facebook-登入"><a href="#tags-Facebook-登入" class="headerlink" title="tags: Facebook 登入"></a>tags: <code>Facebook</code> <code>登入</code></h6>
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/Facebook/" rel="tag"># Facebook</a>
+              <a href="/tags/%E7%99%BB%E5%85%A5/" rel="tag"># 登入</a>
+              <a href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag"># 程式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/09/%E5%B7%A5%E7%A8%8B%E5%B8%AB%E6%80%9D%E7%B6%AD/" rel="next" title="工程師的思維">
+      工程師的思維 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -376,6 +325,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Facebook%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text">Facebook第三方登入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cocoapods%E5%AE%89%E8%A3%9D"><span class="nav-number">1.1.</span> <span class="nav-text">Cocoapods安裝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E5%BF%85%E9%A0%88%E5%85%88%E5%AE%89%E8%A3%9D-cocoapods"><span class="nav-number">1.1.1.</span> <span class="nav-text">首先必須先安裝 cocoapods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96Pod"><span class="nav-number">1.1.2.</span> <span class="nav-text">初始化Pod</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Facebook%E5%BE%8C%E5%8F%B0%E8%A8%AD%E5%AE%9A"><span class="nav-number">1.2.</span> <span class="nav-text">Facebook後台設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E5%AF%A6%E4%BD%9C"><span class="nav-number">1.3.</span> <span class="nav-text">程式實作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%B5%E5%BB%BA%E9%A1%9E%E5%88%A5"><span class="nav-number">1.3.1.</span> <span class="nav-text">創建類別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%82%E9%A1%9E%E5%9E%8B%E5%88%A5%E5%90%8D"><span class="nav-number">1.3.2.</span> <span class="nav-text">訂類型別名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%B5%E5%BB%BA%E8%A8%AD%E5%AE%9A%E5%87%BD%E5%BC%8F"><span class="nav-number">1.3.3.</span> <span class="nav-text">創建設定函式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BC%E5%8F%AB%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5"><span class="nav-number">1.3.4.</span> <span class="nav-text">呼叫第三方登入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%95%E7%90%86%E4%BD%BF%E7%94%A8%E8%80%85%E7%9A%84%E8%B3%87%E6%96%99"><span class="nav-number">1.3.5.</span> <span class="nav-text">處理使用者的資料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%95%E7%90%86APP%E8%BD%89%E8%B7%B3"><span class="nav-number">1.3.6.</span> <span class="nav-text">處理APP轉跳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FBSDKLoginButtonDelegate%E4%BB%A3%E7%90%86%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.7.</span> <span class="nav-text">FBSDKLoginButtonDelegate代理方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8AppDelegate%E8%A8%AD%E5%AE%9A"><span class="nav-number">1.4.1.</span> <span class="nav-text">在AppDelegate設定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%95%E7%90%86%E8%BD%89%E8%B7%B3"><span class="nav-number">1.4.2.</span> <span class="nav-text">處理轉跳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E9%9C%80%E8%A6%81%E5%91%BC%E5%8F%AB%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5%E7%9A%84viewController%E5%91%BC%E5%8F%AB%E5%8D%B3%E5%8F%AF"><span class="nav-number">1.4.3.</span> <span class="nav-text">在需要呼叫第三方登入的viewController呼叫即可</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-Facebook-%E7%99%BB%E5%85%A5"><span class="nav-number">1.4.3.0.0.1.</span> <span class="nav-text">tags: Facebook 登入</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
