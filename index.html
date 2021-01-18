@@ -146,7 +146,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/18/UserDefault%20%E5%84%B2%E5%AD%98%E6%87%89%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/17/UserDefault%20%E5%84%B2%E5%AD%98%E6%87%89%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -160,7 +160,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/18/UserDefault%20%E5%84%B2%E5%AD%98%E6%87%89%E7%94%A8/" class="post-title-link" itemprop="url">UserDefault 儲存應用</a>
+            <a href="/2021/01/17/UserDefault%20%E5%84%B2%E5%AD%98%E6%87%89%E7%94%A8/" class="post-title-link" itemprop="url">UserDefault 儲存應用</a>
         </h2>
 
         <div class="post-meta">
@@ -170,7 +170,27 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-01-18 13:49:36" itemprop="dateCreated datePublished" datetime="2021-01-18T13:49:36+08:00">2021-01-18</time>
+              <time title="Created: 2021-01-17 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-17T00:00:00+08:00">2021-01-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-18 13:58:35" itemprop="dateModified" datetime="2021-01-18T13:58:35+08:00">2021-01-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a>
+                </span>
             </span>
 
           
@@ -203,80 +223,6 @@
 <hr>
 <p><strong>註：</strong><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/59d494a45b25">後來找到的參考網站</a></p>
 <h6 id="tags-iOS-swift-UserDefault"><a href="#tags-iOS-swift-UserDefault" class="headerlink" title="tags: iOS swift UserDefault"></a>tags: <code>iOS</code> <code>swift</code> <code>UserDefault</code></h6>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/15/CocoaPods%E6%9B%B4%E6%96%B0FBAudienceNetwork%E7%9A%84%E5%9D%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Rex Lin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Rex 學習紀錄">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/15/CocoaPods%E6%9B%B4%E6%96%B0FBAudienceNetwork%E7%9A%84%E5%9D%91/" class="post-title-link" itemprop="url">CocoaPods更新FBAudienceNetwork的坑</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-01-15 13:54:07" itemprop="dateCreated datePublished" datetime="2021-01-15T13:54:07+08:00">2021-01-15</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="CocoaPods更新FBAudienceNetwork的坑"><a href="#CocoaPods更新FBAudienceNetwork的坑" class="headerlink" title="CocoaPods更新FBAudienceNetwork的坑"></a>CocoaPods更新FBAudienceNetwork的坑</h1><p>[TOC]</p>
-<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>由於蘋果iOS14的限制廣告追蹤政策，不允許追蹤IDFA的用戶會接收不到Facebook的廣告。</p>
-<p>這個時候就必須透過第三方廣告聯播網，而我目前是使用Admob，而為了配合iOS 14，FBAudienceNetwork 必須升級到6.2.1才能有效支援競價廣告，且必須加裝 GoogleMobileAdsMediationFacebook 來為廣告做轉接。</p>
-<h2 id="事由"><a href="#事由" class="headerlink" title="事由"></a>事由</h2><p>但是試了一個早上卻發現 FBAudienceNetwork 只能升到 6.2.0</p>
-<p>使用pod outdated檢查後，確定有6.2.1的版本可提供更新</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod outdated</span><br></pre></td></tr></table></figure>
-<p>在Podfile文件內強制給版號再更新</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod &#x27;FBAudienceNetwork&#x27;, &#x27;= 6.2.1&#x27;`</span><br></pre></td></tr></table></figure>
-<p>pod卻會出現 <code>CocoaPods could not find compatible versions for pod &quot;FBAudienceNetwork</code> 的錯誤訊息</p>
-<p>而移除了Pod的GoogleMobileAdsMediationFacebook後，FBAudienceNetwork卻可以升到6.2.1。</p>
-<h2 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h2><p>去了 CocoaPods 官網看了一下才發現自己犯蠢了，雖然 Facebook 已經釋出了6.2.1，但是CocoaPods的GoogleMobileAdsMediationFacebook只能支援到FBAudienceNetwork 6.2.0。</p>
-<h2 id="建議"><a href="#建議" class="headerlink" title="建議"></a>建議</h2><p>下次如果遇到類似情形，記得先到CocoaPods看看相關的套件是否有同步釋出，如果沒有請靜待官方更新。</p>
-<h2 id="注意-Cocoapods-網站套件右下方的提示"><a href="#注意-Cocoapods-網站套件右下方的提示" class="headerlink" title="注意 Cocoapods 網站套件右下方的提示"></a>注意 Cocoapods 網站套件右下方的提示</h2><p>Cocoapods 套件右下角的Depands on 顯示 FBAudienceNetwork  = 6.2.0<br><img src="https://i.imgur.com/1wAq5cB.png"></p>
-<h2 id="pod-常用指令"><a href="#pod-常用指令" class="headerlink" title="pod 常用指令"></a>pod 常用指令</h2><figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pod repo update 手動更新索引</span><br><span class="line"> </span><br><span class="line">pod deintegrate 移除已加載的pod</span><br><span class="line"></span><br><span class="line">pod install    安裝pod</span><br><span class="line"></span><br><span class="line">pod update    更新已安裝的pod</span><br><span class="line"></span><br><span class="line">pod outdated 列出最新的版本</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>CocoaPods套件連結: <a target="_blank" rel="noopener" href="https://cocoapods.org/pods/GoogleMobileAdsMediationFacebook">GoogleMobileAdsMediationFacebook</a></p>
-</blockquote>
-<h6 id="tags-Facebook-Google-CocoaPods-廣告"><a href="#tags-Facebook-Google-CocoaPods-廣告" class="headerlink" title="tags: Facebook Google CocoaPods 廣告"></a>tags: <code>Facebook</code> <code>Google</code> <code>CocoaPods</code> <code>廣告</code></h6>
       
     </div>
 
@@ -398,7 +344,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-09 18:08:02" itemprop="dateModified" datetime="2021-01-09T18:08:02+08:00">2021-01-09</time>
+                <time title="Modified: 2021-01-18 13:56:59" itemprop="dateModified" datetime="2021-01-18T13:56:59+08:00">2021-01-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -458,6 +404,100 @@
 <h3 id="處理轉跳"><a href="#處理轉跳" class="headerlink" title="處理轉跳"></a>處理轉跳</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//按下登入鈕後，畫面會跳轉到網頁，進行帳號密碼確認，此方法實作確認完帳號密碼後，畫面跳轉回原ViewController</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="keyword">_</span> app: UIApplication, <span class="keyword">open</span> url: URL, options: [UIApplication.OpenURLOptionsKey : <span class="keyword">Any</span>] = [:])</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">let</span> facebookLogin <span class="operator">=</span> <span class="type">FacebookLogin</span>.openURL(app, <span class="keyword">open</span>: url, options: options)<span class="operator">****</span></span><br><span class="line">    <span class="keyword">return</span> facebookLogin</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="在需要呼叫第三方登入的viewController呼叫即可"><a href="#在需要呼叫第三方登入的viewController呼叫即可" class="headerlink" title="在需要呼叫第三方登入的viewController呼叫即可"></a>在需要呼叫第三方登入的viewController呼叫即可</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FacebookLogin</span>.login(viewController: <span class="keyword">self</span>) &#123; (token) <span class="keyword">in</span></span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h6 id="tags-Facebook-登入"><a href="#tags-Facebook-登入" class="headerlink" title="tags: Facebook 登入"></a>tags: <code>Facebook</code> <code>登入</code></h6>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/08/CocoaPods%E6%9B%B4%E6%96%B0FBAudienceNetwork%E7%9A%84%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Rex Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rex 學習紀錄">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/08/CocoaPods%E6%9B%B4%E6%96%B0FBAudienceNetwork%E7%9A%84%E5%9D%91/" class="post-title-link" itemprop="url">CocoaPods更新FBAudienceNetwork的坑</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-08T00:00:00+08:00">2021-01-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-18 13:58:20" itemprop="dateModified" datetime="2021-01-18T13:58:20+08:00">2021-01-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="CocoaPods更新FBAudienceNetwork的坑"><a href="#CocoaPods更新FBAudienceNetwork的坑" class="headerlink" title="CocoaPods更新FBAudienceNetwork的坑"></a>CocoaPods更新FBAudienceNetwork的坑</h1><p>[TOC]</p>
+<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>由於蘋果iOS14的限制廣告追蹤政策，不允許追蹤IDFA的用戶會接收不到Facebook的廣告。</p>
+<p>這個時候就必須透過第三方廣告聯播網，而我目前是使用Admob，而為了配合iOS 14，FBAudienceNetwork 必須升級到6.2.1才能有效支援競價廣告，且必須加裝 GoogleMobileAdsMediationFacebook 來為廣告做轉接。</p>
+<h2 id="事由"><a href="#事由" class="headerlink" title="事由"></a>事由</h2><p>但是試了一個早上卻發現 FBAudienceNetwork 只能升到 6.2.0</p>
+<p>使用pod outdated檢查後，確定有6.2.1的版本可提供更新</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod outdated</span><br></pre></td></tr></table></figure>
+<p>在Podfile文件內強制給版號再更新</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod &#x27;FBAudienceNetwork&#x27;, &#x27;= 6.2.1&#x27;`</span><br></pre></td></tr></table></figure>
+<p>pod卻會出現 <code>CocoaPods could not find compatible versions for pod &quot;FBAudienceNetwork</code> 的錯誤訊息</p>
+<p>而移除了Pod的GoogleMobileAdsMediationFacebook後，FBAudienceNetwork卻可以升到6.2.1。</p>
+<h2 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h2><p>去了 CocoaPods 官網看了一下才發現自己犯蠢了，雖然 Facebook 已經釋出了6.2.1，但是CocoaPods的GoogleMobileAdsMediationFacebook只能支援到FBAudienceNetwork 6.2.0。</p>
+<h2 id="建議"><a href="#建議" class="headerlink" title="建議"></a>建議</h2><p>下次如果遇到類似情形，記得先到CocoaPods看看相關的套件是否有同步釋出，如果沒有請靜待官方更新。</p>
+<h2 id="注意-Cocoapods-網站套件右下方的提示"><a href="#注意-Cocoapods-網站套件右下方的提示" class="headerlink" title="注意 Cocoapods 網站套件右下方的提示"></a>注意 Cocoapods 網站套件右下方的提示</h2><p>Cocoapods 套件右下角的Depands on 顯示 FBAudienceNetwork  = 6.2.0<br><img src="https://i.imgur.com/1wAq5cB.png"></p>
+<h2 id="pod-常用指令"><a href="#pod-常用指令" class="headerlink" title="pod 常用指令"></a>pod 常用指令</h2><figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pod repo update 手動更新索引</span><br><span class="line"> </span><br><span class="line">pod deintegrate 移除已加載的pod</span><br><span class="line"></span><br><span class="line">pod install    安裝pod</span><br><span class="line"></span><br><span class="line">pod update    更新已安裝的pod</span><br><span class="line"></span><br><span class="line">pod outdated 列出最新的版本</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>CocoaPods套件連結: <a target="_blank" rel="noopener" href="https://cocoapods.org/pods/GoogleMobileAdsMediationFacebook">GoogleMobileAdsMediationFacebook</a></p>
+</blockquote>
+<h6 id="tags-Facebook-Google-CocoaPods-廣告"><a href="#tags-Facebook-Google-CocoaPods-廣告" class="headerlink" title="tags: Facebook Google CocoaPods 廣告"></a>tags: <code>Facebook</code> <code>Google</code> <code>CocoaPods</code> <code>廣告</code></h6>
       
     </div>
 
@@ -547,7 +587,7 @@
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
