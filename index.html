@@ -116,17 +116,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">9</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">2</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">4</span></a>
 
   </li>
   </ul>
@@ -319,6 +319,94 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/08/CocoaPods%E6%9B%B4%E6%96%B0FBAudienceNetwork%E7%9A%84%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/rexjamesg.png">
+      <meta itemprop="name" content="Rex Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rex 學習紀錄">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/08/CocoaPods%E6%9B%B4%E6%96%B0FBAudienceNetwork%E7%9A%84%E5%9D%91/" class="post-title-link" itemprop="url">CocoaPods更新FBAudienceNetwork的坑</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-08T00:00:00+08:00">2021-01-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-21 09:20:52" itemprop="dateModified" datetime="2021-01-21T09:20:52+08:00">2021-01-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="CocoaPods更新FBAudienceNetwork的坑"><a href="#CocoaPods更新FBAudienceNetwork的坑" class="headerlink" title="CocoaPods更新FBAudienceNetwork的坑"></a>CocoaPods更新FBAudienceNetwork的坑</h1><p>[TOC]</p>
+<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>由於蘋果iOS14的限制廣告追蹤政策，不允許追蹤IDFA的用戶會接收不到Facebook的廣告。</p>
+<p>這個時候就必須透過第三方廣告聯播網，而我目前是使用Admob，而為了配合iOS 14，FBAudienceNetwork 必須升級到6.2.1才能有效支援競價廣告，且必須加裝 GoogleMobileAdsMediationFacebook 來為廣告做轉接。</p>
+<h2 id="事由"><a href="#事由" class="headerlink" title="事由"></a>事由</h2><p>但是試了一個早上卻發現 FBAudienceNetwork 只能升到 6.2.0</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/08/CocoaPods%E6%9B%B4%E6%96%B0FBAudienceNetwork%E7%9A%84%E5%9D%91/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/08/Facebook%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -387,94 +475,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/01/08/Facebook%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/08/CocoaPods%E6%9B%B4%E6%96%B0FBAudienceNetwork%E7%9A%84%E5%9D%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/rexjamesg.png">
-      <meta itemprop="name" content="Rex Lin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Rex 學習紀錄">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/08/CocoaPods%E6%9B%B4%E6%96%B0FBAudienceNetwork%E7%9A%84%E5%9D%91/" class="post-title-link" itemprop="url">CocoaPods更新FBAudienceNetwork的坑</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-01-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-08T00:00:00+08:00">2021-01-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-21 09:20:52" itemprop="dateModified" datetime="2021-01-21T09:20:52+08:00">2021-01-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="CocoaPods更新FBAudienceNetwork的坑"><a href="#CocoaPods更新FBAudienceNetwork的坑" class="headerlink" title="CocoaPods更新FBAudienceNetwork的坑"></a>CocoaPods更新FBAudienceNetwork的坑</h1><p>[TOC]</p>
-<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>由於蘋果iOS14的限制廣告追蹤政策，不允許追蹤IDFA的用戶會接收不到Facebook的廣告。</p>
-<p>這個時候就必須透過第三方廣告聯播網，而我目前是使用Admob，而為了配合iOS 14，FBAudienceNetwork 必須升級到6.2.1才能有效支援競價廣告，且必須加裝 GoogleMobileAdsMediationFacebook 來為廣告做轉接。</p>
-<h2 id="事由"><a href="#事由" class="headerlink" title="事由"></a>事由</h2><p>但是試了一個早上卻發現 FBAudienceNetwork 只能升到 6.2.0</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/08/CocoaPods%E6%9B%B4%E6%96%B0FBAudienceNetwork%E7%9A%84%E5%9D%91/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
