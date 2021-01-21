@@ -177,7 +177,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-19 16:49:50" itemprop="dateModified" datetime="2021-01-19T16:49:50+08:00">2021-01-19</time>
+                <time title="Modified: 2021-01-21 09:20:52" itemprop="dateModified" datetime="2021-01-21T09:20:52+08:00">2021-01-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -207,22 +207,14 @@
           <h1 id="UserDefault-儲存應用"><a href="#UserDefault-儲存應用" class="headerlink" title="UserDefault 儲存應用"></a>UserDefault 儲存應用</h1><h2 id="1-儲存-struct"><a href="#1-儲存-struct" class="headerlink" title="1. 儲存 struct"></a>1. 儲存 struct</h2><h3 id="struct-格式範例："><a href="#struct-格式範例：" class="headerlink" title="struct 格式範例："></a>struct 格式範例：</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">UserInfo</span>: <span class="title">Codable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> name:<span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> email:<span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> id:<span class="type">String</span>?</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>要儲存的 struct 必須遵守Codable的協定才可使用JSONEncoder作轉換</p>
 <hr>
-<h3 id="儲存方法"><a href="#儲存方法" class="headerlink" title="儲存方法"></a>儲存方法</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">setUserInfo</span><span class="params">(userInfo:UserInfo)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> value <span class="operator">=</span> <span class="keyword">try?</span> <span class="type">JSONEncoder</span>().encode(userInfo) &#123;</span><br><span class="line">    </span><br><span class="line">        <span class="type">UserDefaults</span>.standard.set(value, forKey: <span class="string">&quot;userInfo&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="type">UserDefaults</span>.standard.synchronize()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<pre><code>UserDefaults.standard.set(value, forKey: &quot;userInfo&quot;) </code></pre>
-<p>這裡的userInfo可以替換成自定義的key</p>
-<hr>
-<h3 id="取得方法"><a href="#取得方法" class="headerlink" title="取得方法"></a>取得方法</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getUserInfo</span><span class="params">()</span></span> -&gt; <span class="type">UserInfo</span>? &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> data <span class="operator">=</span> <span class="type">UserDefaults</span>.standard.data(forKey: <span class="string">&quot;userInfo&quot;</span>) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> userInfo <span class="operator">=</span> <span class="keyword">try?</span> <span class="type">JSONDecoder</span>().decode(<span class="type">UserInfo</span>.<span class="keyword">self</span>, from: data)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> userInfo</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>UserDefaults.standard.data(forKey: &quot;userInfo&quot;)</code></pre>
-<p>如果沒有key, UserDefaults會回傳空值</p>
-<hr>
-<h2 id="2-儲存顏色"><a href="#2-儲存顏色" class="headerlink" title="2. 儲存顏色"></a>2. 儲存顏色</h2><h3 id="儲存方法-1"><a href="#儲存方法-1" class="headerlink" title="儲存方法"></a>儲存方法</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">setPreferColor</span><span class="params">(color:UIColor)</span></span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="type">UserDefaults</span>.standard.set(<span class="type">NSKeyedArchiver</span>.archivedData(withRootObject: color), forKey: <span class="string">&quot;preferColor&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="type">UserDefaults</span>.standard.synchronize()</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>UIColor 需要透過 archivedData 轉為Data才可儲存，否則之後取出會為nil</p>
-<hr>
-<h3 id="取得方法-1"><a href="#取得方法-1" class="headerlink" title="取得方法"></a>取得方法</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getPreferColor</span><span class="params">()</span></span> -&gt; <span class="type">UIColor</span>? &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> savedData <span class="operator">=</span> <span class="type">UserDefaults</span>.standard.object(forKey: <span class="string">&quot;preferColor&quot;</span>) <span class="keyword">as?</span> <span class="type">Data</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="type">NSKeyedUnarchiver</span>.unarchiveObject(with: savedData) <span class="keyword">as?</span> <span class="type">UIColor</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<p><strong>註：</strong><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/59d494a45b25">後來找到的參考網站</a></p>
-<h6 id="tags-iOS-swift-UserDefault"><a href="#tags-iOS-swift-UserDefault" class="headerlink" title="tags: iOS swift UserDefault"></a>tags: <code>iOS</code> <code>swift</code> <code>UserDefault</code></h6>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/17/UserDefault%20%E5%84%B2%E5%AD%98%E6%87%89%E7%94%A8/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -272,7 +264,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-19 17:20:57" itemprop="dateModified" datetime="2021-01-19T17:20:57+08:00">2021-01-19</time>
+                <time title="Modified: 2021-01-21 09:41:47" itemprop="dateModified" datetime="2021-01-21T09:41:47+08:00">2021-01-21</time>
               </span>
 
           
@@ -290,20 +282,15 @@
 <h2 id="對工程師迷思"><a href="#對工程師迷思" class="headerlink" title="對工程師迷思?"></a>對工程師迷思?</h2><p><strong>一直不斷的寫專案就會變厲害？</strong></p>
 <p>對一半，頻繁的寫程式能增加該語言的熟悉度，並能在需要時輕鬆的調用適合的函式，但是要精進繼續還是需要花時間替別去研究</p>
 <p>若工程師長期處於無腦的撰寫程式，該工程師的使用年限會降低，由於無法有期間來提昇自我技術，將會漸漸的被新技術所淘汰。</p>
-<h2 id="為何不使用下班時間做技術提升動作？"><a href="#為何不使用下班時間做技術提升動作？" class="headerlink" title="為何不使用下班時間做技術提升動作？"></a>為何不使用下班時間做技術提升動作？</h2><p>學習新技術也需要耗費精力與腦力，若工作本身已經消費大量精神，則下班後需要適時的休息，良好的狀態才能有效吸收新技術。</p>
-<p>相信一位全職運動員也無法在經歷一整天的鍛鍊之後，回家還繼續提升自我的體能。</p>
-<h2 id="如何取得平衡？"><a href="#如何取得平衡？" class="headerlink" title="如何取得平衡？"></a>如何取得平衡？</h2><p>當專案開發進入維護階段時，可以修正錯誤與研發新技術輪流進行，可以將習得的新技術用於新研發的功能</p>
-<p>缺乏維護的程式不僅會面對時代趨勢的衝擊，也會面對使用者的淘汰。</p>
-<h2 id="應有的態度"><a href="#應有的態度" class="headerlink" title="應有的態度?"></a>應有的態度?</h2><p>一位工程師應該要有的態度並不是坐等別人餵食新技術，而是需要主動去找尋適合的新技術，並加以應用在公司專案上，藉此才能有效發揮專長，提高公司收益。</p>
-<h2 id="常常聽到程式架構，為何架構重要？"><a href="#常常聽到程式架構，為何架構重要？" class="headerlink" title="常常聽到程式架構，為何架構重要？"></a>常常聽到程式架構，為何架構重要？</h2><p>架構就等於房子的藍圖，良好的架構才能讓房子住的安心，假設建築師因為一時貪快，將房子管線隨意配置，房子還新的時候固然不會有事，當房子老舊缺乏維護時，將會面臨到無法維護，需要打掉重練的窘境，完全是得不償失。</p>
-<p>程式也一樣，良好的架構是為了增加穩定度、更好維護、更好除錯且方便做交接。</p>
-<p>若是一昧單純的以撰寫速度或代碼量去判斷一個工程師的優劣，就像買車的時候單純以省油及外型來選購車子而忽略最重要的安全性及實用性。</p>
-<h2 id="為何工程師注重程式碼優先而不是收益？"><a href="#為何工程師注重程式碼優先而不是收益？" class="headerlink" title="為何工程師注重程式碼優先而不是收益？"></a>為何工程師注重程式碼優先而不是收益？</h2><p>獲得收益固然是公司營運的宗旨，但要追求長遠的收益則需建構在程式的實用性及穩定性，否則再好的創意或行銷手段，沒有穩定的技術輔助也只是曇花一現。</p>
-<p>由於到頭來程式碼還是工程師自己維護，如果為了貪快而亂寫會導致日後更新速度大副減低，嚴重則是無法交接。</p>
-<p>例如今天環境區域是統一請人打掃，那大家就比較不會對整潔有太高的關注，若今天環境區域是自己負責，任何的問題都是自己的負擔，負責人會變得格外注重環境整潔。</p>
-<p>攸關自我的事情，人有較高的關注度，這是人性。</p>
-<h3 id="附上一張圖"><a href="#附上一張圖" class="headerlink" title="附上一張圖:"></a>附上一張圖:</h3><p>許多現實的事情就是這樣<br><img src="https://i.imgur.com/Dta2xSZ.png"></p>
-<h6 id="tags-心得-程式"><a href="#tags-心得-程式" class="headerlink" title="tags: 心得 程式"></a>tags: <code>心得</code> <code>程式</code></h6>
+<h2 id="為何不使用下班時間做技術提升動作？"><a href="#為何不使用下班時間做技術提升動作？" class="headerlink" title="為何不使用下班時間做技術提升動作？"></a>為何不使用下班時間做技術提升動作？</h2><p>學習新技術也需要耗費精力與腦力，若工作本身已經消費大量精神，則下班後<br>需要適時的休息，良好的狀態才能有效吸收新技術。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/09/%E5%B7%A5%E7%A8%8B%E5%B8%AB%E6%80%9D%E7%B6%AD/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -353,7 +340,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-18 13:56:59" itemprop="dateModified" datetime="2021-01-18T13:56:59+08:00">2021-01-18</time>
+                <time title="Modified: 2021-01-21 09:42:32" itemprop="dateModified" datetime="2021-01-21T09:42:32+08:00">2021-01-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -387,32 +374,14 @@
 <h2 id="Cocoapods安裝"><a href="#Cocoapods安裝" class="headerlink" title="Cocoapods安裝"></a>Cocoapods安裝</h2><h3 id="首先必須先安裝-cocoapods"><a href="#首先必須先安裝-cocoapods" class="headerlink" title="首先必須先安裝 cocoapods"></a>首先必須先安裝 cocoapods</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gem install cocoapods</span><br><span class="line"></span><br><span class="line">sudo gem install cocoapods</span><br></pre></td></tr></table></figure>
 <h3 id="初始化Pod"><a href="#初始化Pod" class="headerlink" title="初始化Pod"></a>初始化Pod</h3><p>至專案目錄下指令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod init</span><br></pre></td></tr></table></figure>
-<p>完成後會再專案根目錄出現Pod的檔案，點開編輯輸入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">target &#39;你的專案名稱&#39; do</span><br><span class="line"></span><br><span class="line">    pod &#39;FacebookCore&#39;</span><br><span class="line">    pod &#39;FacebookLogin&#39;</span><br><span class="line">    pod &#39;FacebookShare&#39;</span><br><span class="line">    </span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>之後在終端機專案目錄下執行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod install</span><br></pre></td></tr></table></figure>
-<p>完成之後會在專案目錄下出現一個檔名為workspce的檔案，之後要撰寫程式都從此進入</p>
-<h2 id="Facebook後台設定"><a href="#Facebook後台設定" class="headerlink" title="Facebook後台設定"></a>Facebook後台設定</h2><p>後台設定可以參考官方文件: <a target="_blank" rel="noopener" href="https://developers.facebook.com/docs/facebook-login/ios?locale=zh_TW">官方連結</a></p>
-<p>這邊主要是將官方提供的xml輸入到自己的info.plist裡面</p>
-<h2 id="程式實作"><a href="#程式實作" class="headerlink" title="程式實作"></a>程式實作</h2><h3 id="創建類別"><a href="#創建類別" class="headerlink" title="創建類別"></a>創建類別</h3><p>創一個類別叫FacebookLogin並import FBSDKLoginKit</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"><span class="keyword">import</span> FBSDKLoginKit</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FacebookLogin</span>: <span class="title">NSObject</span>, <span class="title">LoginButtonDelegate</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="訂類型別名"><a href="#訂類型別名" class="headerlink" title="訂類型別名"></a>訂類型別名</h3><p>訂一個類型別名方便閱讀，此程序非必要，依照個人撰寫習慣</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">FBRequestHandler</span> <span class="operator">=</span> (<span class="keyword">_</span> connection:<span class="type">GraphRequestConnection</span>?, <span class="keyword">_</span> result:<span class="keyword">Any</span><span class="operator">?</span>, <span class="keyword">_</span> error:<span class="type">Error</span>?)-&gt;()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="創建設定函式"><a href="#創建設定函式" class="headerlink" title="創建設定函式"></a>創建設定函式</h3><p>於FacebookLogin內創建一個在開啟時使執行設定的函式</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">setup</span>(<span class="title">_</span> <span class="title">application</span>: <span class="title">UIApplication</span>, <span class="title">didFinishLaunchingWithOptions</span> <span class="title">launchOptions</span>: [<span class="title">UIApplication</span>.<span class="title">LaunchOptionsKey</span>: <span class="title">Any</span>]?) </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="type">ApplicationDelegate</span>.shared.application(application, didFinishLaunchingWithOptions: launchOptions)</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="呼叫第三方登入"><a href="#呼叫第三方登入" class="headerlink" title="呼叫第三方登入"></a>呼叫第三方登入</h3><p>成功則將會回傳使用者資料</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">login</span>(<span class="title">viewController</span>:<span class="title">UIViewController</span>, <span class="title">completion</span>: @<span class="title">escaping</span> (<span class="title">_</span> <span class="title">token</span>:<span class="title">String</span>) -&gt; <span class="title">Void</span>) </span>&#123;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">let</span> fbLoginManager : <span class="type">LoginManager</span> <span class="operator">=</span> <span class="type">LoginManager</span>()</span><br><span class="line">        </span><br><span class="line">    fbLoginManager.logOut()</span><br><span class="line">        </span><br><span class="line">    fbLoginManager.logIn(permissions: [<span class="string">&quot;email&quot;</span>], from: viewController) &#123; (result, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> (error <span class="operator">==</span> <span class="literal">nil</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (result<span class="operator">?</span>.isCancelled)<span class="operator">!</span> &#123;</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;login has been canceled&quot;</span>)</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">self</span>.getFBUserData(completion: &#123; (connection, result, error) <span class="keyword">in</span></span><br><span class="line">                    <span class="keyword">if</span> (error <span class="operator">==</span> <span class="literal">nil</span>) &#123;</span><br><span class="line">                        <span class="comment">//everything works print the user data</span></span><br><span class="line">                        <span class="keyword">if</span> <span class="keyword">let</span> currentToken <span class="operator">=</span> <span class="type">AccessToken</span>.current &#123;</span><br><span class="line">                            completion(currentToken.tokenString)</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="處理使用者的資料"><a href="#處理使用者的資料" class="headerlink" title="處理使用者的資料"></a>處理使用者的資料</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">private</span> <span class="title">func</span> <span class="title">getFBUserData</span>(<span class="title">completion</span>:@<span class="title">escaping</span> (<span class="title">FBRequestHandler</span>)) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ((<span class="type">AccessToken</span>.current) <span class="operator">!=</span> <span class="literal">nil</span>) &#123;</span><br><span class="line">        <span class="type">GraphRequest</span>(graphPath: <span class="string">&quot;me&quot;</span>, parameters:  [<span class="string">&quot;fields&quot;</span>: <span class="string">&quot;id, name, first_name, last_name, picture.type(large), email&quot;</span>]).start(completionHandler: &#123; (connection, result, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> error <span class="operator">==</span> <span class="literal">nil</span> &#123;</span><br><span class="line">                completion(connection, result, error)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">print</span>(error)</span><br><span class="line">                completion(connection, <span class="literal">nil</span>, error)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="處理APP轉跳"><a href="#處理APP轉跳" class="headerlink" title="處理APP轉跳"></a>處理APP轉跳</h3><p>於FacebookLogin內創建一個處理APP轉跳的函式</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">openURL</span>(<span class="title">_</span> <span class="title">app</span>: <span class="title">UIApplication</span>, <span class="title">open</span> <span class="title">url</span>: <span class="title">URL</span>, <span class="title">options</span>: [<span class="title">UIApplication</span>.<span class="title">OpenURLOptionsKey</span> : <span class="title">Any</span>] = [:] ) -&gt; <span class="title">Bool</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">ApplicationDelegate</span>.shared.application(app, <span class="keyword">open</span>: url, sourceApplication: options[<span class="type">UIApplication</span>.<span class="type">OpenURLOptionsKey</span>.sourceApplication] <span class="keyword">as?</span> <span class="type">String</span>, annotation: options[<span class="type">UIApplication</span>.<span class="type">OpenURLOptionsKey</span>.annotation])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="FBSDKLoginButtonDelegate代理方法"><a href="#FBSDKLoginButtonDelegate代理方法" class="headerlink" title="FBSDKLoginButtonDelegate代理方法"></a>FBSDKLoginButtonDelegate代理方法</h3><p>可依照需求處理相對應流程</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//MARK: - FBSDKLoginButtonDelegate</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">loginButton</span><span class="params">(<span class="keyword">_</span> loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?)</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">loginButtonDidLogOut</span><span class="params">(<span class="keyword">_</span> loginButton: FBLoginButton)</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="在AppDelegate設定"><a href="#在AppDelegate設定" class="headerlink" title="在AppDelegate設定"></a>在AppDelegate設定</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="keyword">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: <span class="keyword">Any</span>]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">    <span class="comment">// Override point for customization after application launch.</span></span><br><span class="line">                </span><br><span class="line">    <span class="comment">//----- facebook sign-in -----</span></span><br><span class="line">    <span class="type">FacebookLogin</span>.setup(application, didFinishLaunchingWithOptions: launchOptions)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="處理轉跳"><a href="#處理轉跳" class="headerlink" title="處理轉跳"></a>處理轉跳</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//按下登入鈕後，畫面會跳轉到網頁，進行帳號密碼確認，此方法實作確認完帳號密碼後，畫面跳轉回原ViewController</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="keyword">_</span> app: UIApplication, <span class="keyword">open</span> url: URL, options: [UIApplication.OpenURLOptionsKey : <span class="keyword">Any</span>] = [:])</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">let</span> facebookLogin <span class="operator">=</span> <span class="type">FacebookLogin</span>.openURL(app, <span class="keyword">open</span>: url, options: options)<span class="operator">****</span></span><br><span class="line">    <span class="keyword">return</span> facebookLogin</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="在需要呼叫第三方登入的viewController呼叫即可"><a href="#在需要呼叫第三方登入的viewController呼叫即可" class="headerlink" title="在需要呼叫第三方登入的viewController呼叫即可"></a>在需要呼叫第三方登入的viewController呼叫即可</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FacebookLogin</span>.login(viewController: <span class="keyword">self</span>) &#123; (token) <span class="keyword">in</span></span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h6 id="tags-Facebook-登入"><a href="#tags-Facebook-登入" class="headerlink" title="tags: Facebook 登入"></a>tags: <code>Facebook</code> <code>登入</code></h6>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/08/Facebook%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -462,7 +431,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-18 13:58:20" itemprop="dateModified" datetime="2021-01-18T13:58:20+08:00">2021-01-18</time>
+                <time title="Modified: 2021-01-21 09:20:52" itemprop="dateModified" datetime="2021-01-21T09:20:52+08:00">2021-01-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -493,20 +462,14 @@
 <h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>由於蘋果iOS14的限制廣告追蹤政策，不允許追蹤IDFA的用戶會接收不到Facebook的廣告。</p>
 <p>這個時候就必須透過第三方廣告聯播網，而我目前是使用Admob，而為了配合iOS 14，FBAudienceNetwork 必須升級到6.2.1才能有效支援競價廣告，且必須加裝 GoogleMobileAdsMediationFacebook 來為廣告做轉接。</p>
 <h2 id="事由"><a href="#事由" class="headerlink" title="事由"></a>事由</h2><p>但是試了一個早上卻發現 FBAudienceNetwork 只能升到 6.2.0</p>
-<p>使用pod outdated檢查後，確定有6.2.1的版本可提供更新</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod outdated</span><br></pre></td></tr></table></figure>
-<p>在Podfile文件內強制給版號再更新</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod &#x27;FBAudienceNetwork&#x27;, &#x27;= 6.2.1&#x27;`</span><br></pre></td></tr></table></figure>
-<p>pod卻會出現 <code>CocoaPods could not find compatible versions for pod &quot;FBAudienceNetwork</code> 的錯誤訊息</p>
-<p>而移除了Pod的GoogleMobileAdsMediationFacebook後，FBAudienceNetwork卻可以升到6.2.1。</p>
-<h2 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h2><p>去了 CocoaPods 官網看了一下才發現自己犯蠢了，雖然 Facebook 已經釋出了6.2.1，但是CocoaPods的GoogleMobileAdsMediationFacebook只能支援到FBAudienceNetwork 6.2.0。</p>
-<h2 id="建議"><a href="#建議" class="headerlink" title="建議"></a>建議</h2><p>下次如果遇到類似情形，記得先到CocoaPods看看相關的套件是否有同步釋出，如果沒有請靜待官方更新。</p>
-<h2 id="注意-Cocoapods-網站套件右下方的提示"><a href="#注意-Cocoapods-網站套件右下方的提示" class="headerlink" title="注意 Cocoapods 網站套件右下方的提示"></a>注意 Cocoapods 網站套件右下方的提示</h2><p>Cocoapods 套件右下角的Depands on 顯示 FBAudienceNetwork  = 6.2.0<br><img src="https://i.imgur.com/1wAq5cB.png"></p>
-<h2 id="pod-常用指令"><a href="#pod-常用指令" class="headerlink" title="pod 常用指令"></a>pod 常用指令</h2><figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pod repo update 手動更新索引</span><br><span class="line"> </span><br><span class="line">pod deintegrate 移除已加載的pod</span><br><span class="line"></span><br><span class="line">pod install    安裝pod</span><br><span class="line"></span><br><span class="line">pod update    更新已安裝的pod</span><br><span class="line"></span><br><span class="line">pod outdated 列出最新的版本</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>CocoaPods套件連結: <a target="_blank" rel="noopener" href="https://cocoapods.org/pods/GoogleMobileAdsMediationFacebook">GoogleMobileAdsMediationFacebook</a></p>
-</blockquote>
-<h6 id="tags-Facebook-Google-CocoaPods-廣告"><a href="#tags-Facebook-Google-CocoaPods-廣告" class="headerlink" title="tags: Facebook Google CocoaPods 廣告"></a>tags: <code>Facebook</code> <code>Google</code> <code>CocoaPods</code> <code>廣告</code></h6>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/08/CocoaPods%E6%9B%B4%E6%96%B0FBAudienceNetwork%E7%9A%84%E5%9D%91/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -592,12 +555,14 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
         <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">categories</span>
+        <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
         <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>

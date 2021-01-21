@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/1wAq5cB.png">
 <meta property="article:published_time" content="2021-01-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-01-18T05:58:20.698Z">
+<meta property="article:modified_time" content="2021-01-21T01:20:52.528Z">
 <meta property="article:author" content="Rex Lin">
 <meta property="article:tag" content="Facebook">
 <meta property="article:tag" content="Google">
@@ -187,7 +187,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-18 13:58:20" itemprop="dateModified" datetime="2021-01-18T13:58:20+08:00">2021-01-18</time>
+                <time title="Modified: 2021-01-21 09:20:52" itemprop="dateModified" datetime="2021-01-21T09:20:52+08:00">2021-01-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -218,6 +218,8 @@
 <h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>由於蘋果iOS14的限制廣告追蹤政策，不允許追蹤IDFA的用戶會接收不到Facebook的廣告。</p>
 <p>這個時候就必須透過第三方廣告聯播網，而我目前是使用Admob，而為了配合iOS 14，FBAudienceNetwork 必須升級到6.2.1才能有效支援競價廣告，且必須加裝 GoogleMobileAdsMediationFacebook 來為廣告做轉接。</p>
 <h2 id="事由"><a href="#事由" class="headerlink" title="事由"></a>事由</h2><p>但是試了一個早上卻發現 FBAudienceNetwork 只能升到 6.2.0</p>
+<a id="more"></a>
+
 <p>使用pod outdated檢查後，確定有6.2.1的版本可提供更新</p>
 <figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod outdated</span><br></pre></td></tr></table></figure>
 <p>在Podfile文件內強制給版號再更新</p>
@@ -333,12 +335,14 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
         <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">categories</span>
+        <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
         <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
