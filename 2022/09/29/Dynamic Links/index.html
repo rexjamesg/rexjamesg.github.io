@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Dynamic Links[TOC] 測試方式 連結設定完畢後，複製至模擬器safari並點擊 Xcode Run 專案  測試結果尚未安裝app狀態： 第一次點擊連結後安裝app並開啟 -&gt; 可以偵測 會觸發123func application(_ application: UIApplication, open url: URL, sourceApplication: String?,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dynamic Links">
+<meta property="og:url" content="http://example.com/2022/09/29/Dynamic%20Links/index.html">
+<meta property="og:site_name" content="Rex 學習紀錄">
+<meta property="og:description" content="Dynamic Links[TOC] 測試方式 連結設定完畢後，複製至模擬器safari並點擊 Xcode Run 專案  測試結果尚未安裝app狀態： 第一次點擊連結後安裝app並開啟 -&gt; 可以偵測 會觸發123func application(_ application: UIApplication, open url: URL, sourceApplication: String?,">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/k4mU75i.jpg">
+<meta property="og:image" content="https://i.imgur.com/HnGMSYI.jpg">
+<meta property="og:image" content="https://i.imgur.com/EqNsSH9.png">
+<meta property="og:image" content="https://i.imgur.com/n7xSWzU.png">
+<meta property="og:image" content="https://i.imgur.com/pFS6fiQ.jpg">
+<meta property="og:image" content="https://i.imgur.com/uGZSack.jpg">
+<meta property="og:image" content="https://i.imgur.com/ytGq1Hj.jpg">
+<meta property="og:image" content="https://i.imgur.com/R04nocS.jpg">
+<meta property="og:image" content="https://i.imgur.com/gY1fZhR.jpg">
+<meta property="og:image" content="https://i.imgur.com/Epyts1y.jpg">
+<meta property="og:image" content="https://i.imgur.com/c2PNYch.jpg">
+<meta property="og:image" content="https://i.imgur.com/u2t0BlV.jpg">
+<meta property="og:image" content="https://i.imgur.com/rJI6nO0.jpg">
+<meta property="og:image" content="https://i.imgur.com/SMKmfG2.jpg">
+<meta property="og:image" content="https://i.imgur.com/qCiDS16.jpg">
+<meta property="og:image" content="https://i.imgur.com/PmYY2dC.png">
+<meta property="og:image" content="https://i.imgur.com/3VfBXQk.jpg">
+<meta property="og:image" content="https://i.imgur.com/fN2jYKQ.jpg">
+<meta property="og:image" content="https://i.imgur.com/UI2My2k.png">
+<meta property="article:published_time" content="2022-09-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-23T08:10:02.584Z">
+<meta property="article:author" content="Rex Lin">
+<meta property="article:tag" content="Firebase">
+<meta property="article:tag" content="Dynamiclink">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/k4mU75i.jpg">
+
+<link rel="canonical" href="http://example.com/2022/09/29/Dynamic%20Links/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>Dynamic Links | Rex 學習紀錄</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Rex 學習紀錄</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/29/Dynamic%20Links/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/git_page_avatar.png">
+      <meta itemprop="name" content="Rex Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rex 學習紀錄">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Dynamic Links
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-09-29 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-29T00:00:00+08:00">2022-09-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-11-23 16:10:02" itemprop="dateModified" datetime="2022-11-23T16:10:02+08:00">2022-11-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Dynamic-Links"><a href="#Dynamic-Links" class="headerlink" title="Dynamic Links"></a>Dynamic Links</h1><p>[TOC]</p>
+<h2 id="測試方式"><a href="#測試方式" class="headerlink" title="測試方式"></a>測試方式</h2><ol>
+<li>連結設定完畢後，複製至模擬器safari並點擊</li>
+<li>Xcode Run 專案</li>
+</ol>
+<h2 id="測試結果"><a href="#測試結果" class="headerlink" title="測試結果"></a>測試結果</h2><h3 id="尚未安裝app狀態："><a href="#尚未安裝app狀態：" class="headerlink" title="尚未安裝app狀態："></a>尚未安裝app狀態：</h3><ul>
+<li><strong>第一次點擊連結後安裝app並開啟 -&gt; 可以偵測 會觸發</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -&gt; Bool &#123;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+</li>
+</ul>
+<p>第一次開啟會使用SchemeUR的方式，因此使用此函式解析(注意解析delegate位置)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if let dynamicLink &#x3D; DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) &#123;</span><br><span class="line">        print(&quot;dynamicLink&quot;,dynamicLink)</span><br><span class="line">        guard let link &#x3D; dynamicLink.url else &#123;</span><br><span class="line">            return true</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        print(&quot;deep link: \(link)&quot;)</span><br><span class="line">        return true</span><br><span class="line">    &#125;</span><br><span class="line">    return false</span><br></pre></td></tr></table></figure>
+<h3 id="第二次開啟："><a href="#第二次開啟：" class="headerlink" title="第二次開啟："></a>第二次開啟：</h3><ul>
+<li><strong>已點擊過連結，再次點擊連結，並引導開啟app -&gt; 可以偵測 會觸發</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -&gt; Void) -&gt; Bool &#123;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+第二次以後開啟則會以handleUniversalLink方式，因此使用此函式解析 (注意解析delegate位置)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let handled &#x3D; DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) &#123; dynamicLinks, error in</span><br><span class="line">    print(&quot;userActivity dynamicLinks&quot;,dynamicLinks)</span><br><span class="line">    print(&quot;error&quot;,error)</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">return handled</span><br></pre></td></tr></table></figure>
+<h3 id="已安裝app狀態："><a href="#已安裝app狀態：" class="headerlink" title="已安裝app狀態："></a>已安裝app狀態：</h3><p>尚未點過連結，開啟app -&gt; 無法偵測</p>
+<ul>
+<li><strong>第一次點擊連結後，連結引導開啟app -&gt; 可以偵測  會觸發</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -&gt; Void) -&gt; Bool &#123;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>已點過連結，先刪除app後，重新安裝並直接開啟app -&gt; 可以偵測 會觸發</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -&gt; Bool &#123;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>尚未點過連結，先刪除app後，點擊連結，安裝並開啟app -&gt; 可以偵測 會觸發</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -&gt; Bool &#123;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>尚未點過連結，先刪除app後，安裝app，點擊連結，並開啟app -&gt; 可以偵測 會觸發</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -&gt; Void) -&gt; Bool &#123;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="回傳物件內容"><a href="#回傳物件內容" class="headerlink" title="回傳物件內容"></a>回傳物件內容</h3></li>
+</ul>
+<p>&lt;FIRDynamicLink: 0x600001aa4b40, url [<a target="_blank" rel="noopener" href="https://swaynfit/welcome]">https://swaynfit/welcome]</a>, match type: default, minimumAppVersion: N/A, match message: One pre-install link matched for this device.&gt;</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>由於沒有上架版可以測試點擊連結，導向商店並下載開啟app，但根據模擬器測試結果推測，點擊過連結就會記住，但已安裝與未安裝觸發位置不同。</p>
+<h5 id="網路資源："><a href="#網路資源：" class="headerlink" title="網路資源："></a>網路資源：</h5><p><a target="_blank" rel="noopener" href="https://masonchang1991.medium.com/%E4%BD%BF%E7%94%A8-firebase-dynamic-links-%E6%89%BE%E5%88%B0%E4%BD%A0%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85%E5%BE%9E%E5%93%AA%E8%A3%A1%E4%B8%8B%E8%BC%89%E4%BD%A0%E7%9A%84-app-eaf44ca89383">https://masonchang1991.medium.com/%E4%BD%BF%E7%94%A8-firebase-dynamic-links-%E6%89%BE%E5%88%B0%E4%BD%A0%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85%E5%BE%9E%E5%93%AA%E8%A3%A1%E4%B8%8B%E8%BC%89%E4%BD%A0%E7%9A%84-app-eaf44ca89383</a></p>
+<h1 id="補充"><a href="#補充" class="headerlink" title="補充:"></a>補充:</h1><h2 id="詳細連結"><a href="#詳細連結" class="headerlink" title="詳細連結"></a>詳細連結</h2><p>可在Firebase後台最右方點選按鈕，點擊連結詳細資料</p>
+<p><img src="https://i.imgur.com/k4mU75i.jpg"></p>
+<h3 id="詳細連結頁面："><a href="#詳細連結頁面：" class="headerlink" title="詳細連結頁面："></a>詳細連結頁面：</h3><p><img src="https://i.imgur.com/HnGMSYI.jpg"></p>
+<h2 id="參數說明"><a href="#參數說明" class="headerlink" title="參數說明"></a>參數說明</h2><h3 id="參數有以下分類："><a href="#參數有以下分類：" class="headerlink" title="參數有以下分類："></a>參數有以下分類：</h3><ul>
+<li>Deep Link Parameters</li>
+<li>Android Parameters</li>
+<li>iOS Parameters</li>
+<li>Other Platform Parameters</li>
+<li>Navigation Parameters</li>
+<li>Social Meta Tag Parameters</li>
+<li>Analytics Parameters</li>
+<li>Debug Parameters</li>
+</ul>
+<h3 id="Deep-Link-Parameters"><a href="#Deep-Link-Parameters" class="headerlink" title="Deep Link Parameters"></a>Deep Link Parameters</h3><p>此連結提供 App 使用或退到網頁版來，如果無法開啟商店則會開啟此連結的網頁。</p>
+<p>亦或是在專案中勾選此設定也會導到該連結</p>
+<p><img src="https://i.imgur.com/EqNsSH9.png"></p>
+<p>一般來說是 App 的內容或是啟動特定 App 邏輯的 Payload；link 會是格式良好且 URL 編碼過的 URL，可以是 HTTP 或 HTTPS，且不能為另一個 Firebase Dynamic Link。</p>
+<p>在桌面裝置的瀏覽器上開啟時，將會開啟這個連結，除非有另外指定 ofl。</p>
+<h3 id="Android-Parameters"><a href="#Android-Parameters" class="headerlink" title="Android Parameters"></a>Android Parameters</h3><p>這部分的參數主要是提供給 Android 來使用。</p>
+<ul>
+<li>apn：用來開啟連結的 Package name，在專案中需要設定並且名稱一致。</li>
+<li>afl：當 Android App 尚未安裝時所開啟的連結，用來指定一些像是開啟手機版的網頁，或是 App 的促銷頁面，並非用在使用者尚未安裝 App 時，從 Play Store 安裝 App 的用途。</li>
+<li>amv：App 能夠開啟此連結的最低版本，如果安裝的較舊的版本時，將會導至 Play Store 來升級 App。</li>
+</ul>
+<h3 id="iOS-Parameters"><a href="#iOS-Parameters" class="headerlink" title="iOS Parameters"></a>iOS Parameters</h3><p>這部分的參數主要提供給 iOS 和 iPads 。</p>
+<ul>
+<li>ibi：用來開啟連結的 iOS App Bundle ID，該 App 應該要在 Firebase Console 的 Overview 中與專案連結在一起；對於 Dynamic Link 要開啟 iOS App 來說是必要的。</li>
+<li>ifl：當 iOS App 尚未安裝時所開啟的連結，用來指定一些像是開啟手機版的網頁，或是開啟 App 的促銷頁面，並非用在使用者尚未安裝 App 時，開啟 App Store 讓使用者安裝 App 的用途。</li>
+<li>ius：自訂的 URL Schema。</li>
+<li>ipfl：當 App 尚未安裝時，在 iPads 上所開啟的連結，與 ifl 的用途類似，只是專門用在 iPads 上。</li>
+<li>ipbi：在 iPads 上用來開啟連結的 App Bundle ID，該 App 必須要在 Firebase Console 的 Overview 頁面中與專案連結在一起。</li>
+<li>isi：App 的 Apple Store ID，當使用者尚未安裝 App 時用來帶使用者到 App Store。</li>
+<li>imv：能夠開啟連結的最低 App 版本，當 App 開啟時，這個 flag 會被傳到 App 中，App 中必須決定該如何處理。</li>
+</ul>
+<h3 id="Other-Parameters"><a href="#Other-Parameters" class="headerlink" title="Other Parameters"></a>Other Parameters</h3><p>主要為除了 Android 和 iOS 平台外所使用的參數。</p>
+<ul>
+<li>ofl：除了 Android 和 iOS 平台，其他平台所開啟的連結，這在電腦版中用來指定不同的行為非常好用，像是開啟 App 內容的滿版網頁，或是其他用來安裝 App 的 Dynamic Link Payload。</li>
+</ul>
+<h3 id="Navigation-Parameters"><a href="#Navigation-Parameters" class="headerlink" title="Navigation Parameters"></a>Navigation Parameters</h3><p>Navigation 所使用的參數。</p>
+<ul>
+<li>efr：將 efr 設為 1 開啟 Dynamic Link 時會略過 App 的預覽頁面，直接跳轉到商店或是 App；App 的預覽畫面在使用者開啟 Dynamic Link時，可以更可靠的將使用者帶到更適合的目的地</li>
+</ul>
+<p>然而，如果你期望 Dynamic Link 只在 App 中被開啟，在沒有 App 的預覽畫面時會更可靠，因此也可以選擇將 efr 設為 0 來停止它。</p>
+<h3 id="Social-Meta-Tag-Parameters"><a href="#Social-Meta-Tag-Parameters" class="headerlink" title="Social Meta Tag Parameters"></a>Social Meta Tag Parameters</h3><p>用在社群分享的參數。</p>
+<ul>
+<li>st：用來當作分享在社群貼文中的標題。</li>
+<li>sd：用來當作分享在社群貼文中的描述。</li>
+<li>si：跟這個連結有相關的圖片，圖片至少要 300*200px 且小於 300KB。</li>
+</ul>
+<h3 id="Analytics-Parameters"><a href="#Analytics-Parameters" class="headerlink" title="Analytics Parameters"></a>Analytics Parameters</h3><p>用於數據分析的參數。</p>
+<ul>
+<li>Google Play Analytics Parameters</li>
+<li>utm_source</li>
+<li>utm_medium</li>
+<li>utm_campaign</li>
+<li>utm_term</li>
+<li>utm_content</li>
+<li>gclid</li>
+<li>iTunes Connect Analytics Parameters</li>
+<li>at</li>
+<li>ct</li>
+<li>mt</li>
+<li>pt</li>
+</ul>
+<h4 id="Debug-Parameters"><a href="#Debug-Parameters" class="headerlink" title="Debug Parameters"></a>Debug Parameters</h4><p>用於偵錯的參數。</p>
+<ul>
+<li>d ：透過將 d 設為 1 進入偵錯模式，將會產生 Dynamic Link 的行為流程圖，而不是載入 Dynamic Link，可以用來預覽 Dynamic Link 在不同平台和配置的行為。</li>
+</ul>
+<p>資料來源：<a target="_blank" rel="noopener" href="https://medium.com/swag/firebase-dynamic-link-%E7%B0%A1%E5%96%AE%E4%BB%8B%E7%B4%B9-fd8259974eec">https://medium.com/swag/firebase-dynamic-link-%E7%B0%A1%E5%96%AE%E4%BB%8B%E7%B4%B9-fd8259974eec</a></p>
+<h2 id="後台設定"><a href="#後台設定" class="headerlink" title="後台設定"></a>後台設定</h2><ol>
+<li><p>在Firebase後台點擊Dynamic Links<br> <img src="https://i.imgur.com/n7xSWzU.png"></p>
+</li>
+<li><p>點擊開始使用<br> <img src="https://i.imgur.com/pFS6fiQ.jpg"></p>
+</li>
+<li><p>設定網址<br> <img src="https://i.imgur.com/uGZSack.jpg"></p>
+</li>
+<li><p>點擊新增動態連結<br><img src="https://i.imgur.com/ytGq1Hj.jpg"></p>
+</li>
+<li><p>設定短網址<br><img src="https://i.imgur.com/R04nocS.jpg"></p>
+</li>
+</ol>
+<blockquote>
+<p> 設定短網址 = 使用者看見的網址</p>
+</blockquote>
+<ol start="6">
+<li>設定動態連結<blockquote>
+<p> 動態連結 = App內能拿到的訊息</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/gY1fZhR.jpg"></p>
+<p><img src="https://i.imgur.com/Epyts1y.jpg"></p>
+<ol start="7">
+<li>設定未安裝導向商店功能<br>選擇要導向的APP</li>
+</ol>
+<p>需要在專案中先設定團隊ID與APP商店ID</p>
+<ol start="8">
+<li>Android部分同上</li>
+</ol>
+<p><img src="https://i.imgur.com/c2PNYch.jpg"></p>
+<ol start="9">
+<li>設定行銷用文案與GA分析名詞<br>以下皆參照提示文字設定</li>
+</ol>
+<p><img src="https://i.imgur.com/u2t0BlV.jpg"></p>
+<p>以上文案會出現於連結，如果發布至Line則顯示：<br><img src="https://i.imgur.com/rJI6nO0.jpg"></p>
+<p>點擊後會開啟Safari<br><img src="https://i.imgur.com/SMKmfG2.jpg"></p>
+<h2 id="iOS專案設定"><a href="#iOS專案設定" class="headerlink" title="iOS專案設定"></a>iOS專案設定</h2><ol>
+<li> Pod 加入 pod ‘Firebase/DynamicLinks’<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod ‘Firebase&#x2F;DynamicLinks’</span><br></pre></td></tr></table></figure>
+終端機：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod install</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果出現警告 None of your spec sources contain a spec satisfying the dependencies: Firebase</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod install --repo-update</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li> Project -&gt; Info →新增 URL Types ，在Identifier 欄位輸入Bundle ID，URL Schemes輸入APP 套件名稱</li>
+</ol>
+<p><img src="https://i.imgur.com/qCiDS16.jpg"></p>
+<ol start="3">
+<li>在Signing &amp; Capabilities 新增 Associated Domains</li>
+</ol>
+<p><img src="https://i.imgur.com/PmYY2dC.png"></p>
+<ol start="4">
+<li>輸入applinks: 與後台設定的domain<br>(ex:applinks:swaynfit.page.link)</li>
+</ol>
+<p><img src="https://i.imgur.com/3VfBXQk.jpg"></p>
+<ol start="5">
+<li>AppDelegate<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import Firebase</span><br></pre></td></tr></table></figure></li>
+<li> 在 didFinishLaunchingWithOptions 加入：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FirebaseApp.configure()</span><br></pre></td></tr></table></figure></li>
+<li>加入下列function即可取得連接資訊<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] &#x3D; [:]) -&gt; Bool &#123;</span><br><span class="line">    return application(app, open: url, sourceApplication: options[.sourceApplication] as? String, annotation: &quot;&quot;)</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -&gt; Bool &#123;</span><br><span class="line">    if let dynamicLink &#x3D; DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) &#123;</span><br><span class="line">        print(&quot;dynamicLink&quot;,dynamicLink)</span><br><span class="line">        guard let link &#x3D; dynamicLink.url else &#123;</span><br><span class="line">            return true</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        print(&quot;deep link: \(link)&quot;)</span><br><span class="line">        return true</span><br><span class="line">    &#125;</span><br><span class="line">    return false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -&gt; Void) -&gt; Bool &#123;            </span><br><span class="line">    let handled &#x3D; DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) &#123; dynamicLinks, error in</span><br><span class="line">        print(&quot;userActivity dynamicLinks&quot;,dynamicLinks)</span><br><span class="line">        print(&quot;error&quot;,error)</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    return handled</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="自定義網址"><a href="#自定義網址" class="headerlink" title="自定義網址"></a>自定義網址</h3>如果不使用firebase提供的page.link則需要再專案plist中新增：</li>
+</ol>
+<p><strong>FirebaseDynamicLinksCustomDomains</strong><br>將網址的domain填入</p>
+<h3 id="後台除錯"><a href="#後台除錯" class="headerlink" title="後台除錯"></a>後台除錯</h3><p><img src="https://i.imgur.com/fN2jYKQ.jpg"></p>
+<h4 id="預覽連結"><a href="#預覽連結" class="headerlink" title="預覽連結"></a>預覽連結</h4><p>點擊後會出現此頁面：<br><img src="https://i.imgur.com/UI2My2k.png"></p>
+<h6 id="tags-Firebase-Swift-Dynamiclink"><a href="#tags-Firebase-Swift-Dynamiclink" class="headerlink" title="tags: Firebase Swift Dynamiclink"></a>tags: <code>Firebase</code> <code>Swift</code> <code>Dynamiclink</code></h6>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Firebase/" rel="tag"># Firebase</a>
+              <a href="/tags/Dynamiclink/" rel="tag"># Dynamiclink</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/09/23/Symbolicate%20Crash%20Log/" rel="prev" title="Symbolicate Crash Log">
+      <i class="fa fa-chevron-left"></i> Symbolicate Crash Log
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/09/Notification%20Content%20Extension/" rel="next" title="Notification Content Extension">
+      Notification Content Extension <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dynamic-Links"><span class="nav-number">1.</span> <span class="nav-text">Dynamic Links</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E6%96%B9%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">測試方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E7%B5%90%E6%9E%9C"><span class="nav-number">1.2.</span> <span class="nav-text">測試結果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%9A%E6%9C%AA%E5%AE%89%E8%A3%9Dapp%E7%8B%80%E6%85%8B%EF%BC%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">尚未安裝app狀態：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E9%96%8B%E5%95%9F%EF%BC%9A"><span class="nav-number">1.2.2.</span> <span class="nav-text">第二次開啟：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%B2%E5%AE%89%E8%A3%9Dapp%E7%8B%80%E6%85%8B%EF%BC%9A"><span class="nav-number">1.2.3.</span> <span class="nav-text">已安裝app狀態：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E5%82%B3%E7%89%A9%E4%BB%B6%E5%85%A7%E5%AE%B9"><span class="nav-number">1.2.4.</span> <span class="nav-text">回傳物件內容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">1.3.</span> <span class="nav-text">結論</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B6%B2%E8%B7%AF%E8%B3%87%E6%BA%90%EF%BC%9A"><span class="nav-number">1.3.0.0.1.</span> <span class="nav-text">網路資源：</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A3%9C%E5%85%85"><span class="nav-number">2.</span> <span class="nav-text">補充:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A9%B3%E7%B4%B0%E9%80%A3%E7%B5%90"><span class="nav-number">2.1.</span> <span class="nav-text">詳細連結</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A9%B3%E7%B4%B0%E9%80%A3%E7%B5%90%E9%A0%81%E9%9D%A2%EF%BC%9A"><span class="nav-number">2.1.1.</span> <span class="nav-text">詳細連結頁面：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E6%95%B8%E8%AA%AA%E6%98%8E"><span class="nav-number">2.2.</span> <span class="nav-text">參數說明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%83%E6%95%B8%E6%9C%89%E4%BB%A5%E4%B8%8B%E5%88%86%E9%A1%9E%EF%BC%9A"><span class="nav-number">2.2.1.</span> <span class="nav-text">參數有以下分類：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deep-Link-Parameters"><span class="nav-number">2.2.2.</span> <span class="nav-text">Deep Link Parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-Parameters"><span class="nav-number">2.2.3.</span> <span class="nav-text">Android Parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS-Parameters"><span class="nav-number">2.2.4.</span> <span class="nav-text">iOS Parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-Parameters"><span class="nav-number">2.2.5.</span> <span class="nav-text">Other Parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Navigation-Parameters"><span class="nav-number">2.2.6.</span> <span class="nav-text">Navigation Parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Social-Meta-Tag-Parameters"><span class="nav-number">2.2.7.</span> <span class="nav-text">Social Meta Tag Parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analytics-Parameters"><span class="nav-number">2.2.8.</span> <span class="nav-text">Analytics Parameters</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Debug-Parameters"><span class="nav-number">2.2.8.1.</span> <span class="nav-text">Debug Parameters</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%8C%E5%8F%B0%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.3.</span> <span class="nav-text">後台設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS%E5%B0%88%E6%A1%88%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.4.</span> <span class="nav-text">iOS專案設定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E7%BE%A9%E7%B6%B2%E5%9D%80"><span class="nav-number">2.4.1.</span> <span class="nav-text">自定義網址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%8C%E5%8F%B0%E9%99%A4%E9%8C%AF"><span class="nav-number">2.4.2.</span> <span class="nav-text">後台除錯</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A0%90%E8%A6%BD%E9%80%A3%E7%B5%90"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">預覽連結</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-Firebase-Swift-Dynamiclink"><span class="nav-number">2.4.2.1.0.1.</span> <span class="nav-text">tags: Firebase Swift Dynamiclink</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Rex Lin"
+      src="/images/git_page_avatar.png">
+  <p class="site-author-name" itemprop="name">Rex Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/rexjamesg" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rexjamesg" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:rexjamesg@gmail.com" title="E-Mail → mailto:rexjamesg@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rex Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

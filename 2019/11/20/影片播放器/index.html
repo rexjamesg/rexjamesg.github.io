@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="影片播放器[TOC] 利用MVC架構製作簡易的影片播放器以及常用的控制功能。 APP截圖 影片選擇列表   利用UICollecitonView將影片由列表方式呈現。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="影片播放器">
+<meta property="og:url" content="http://example.com/2019/11/20/%E5%BD%B1%E7%89%87%E6%92%AD%E6%94%BE%E5%99%A8/index.html">
+<meta property="og:site_name" content="Rex 學習紀錄">
+<meta property="og:description" content="影片播放器[TOC] 利用MVC架構製作簡易的影片播放器以及常用的控制功能。 APP截圖 影片選擇列表   利用UICollecitonView將影片由列表方式呈現。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/BGbIQEu.jpg">
+<meta property="og:image" content="https://i.imgur.com/SANWOmz.jpg">
+<meta property="og:image" content="https://i.imgur.com/wguGUKS.jpg">
+<meta property="og:image" content="https://i.imgur.com/v76ZKoJ.gif">
+<meta property="article:published_time" content="2019-11-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-23T08:10:02.584Z">
+<meta property="article:author" content="Rex Lin">
+<meta property="article:tag" content="AVPlayer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/BGbIQEu.jpg">
+
+<link rel="canonical" href="http://example.com/2019/11/20/%E5%BD%B1%E7%89%87%E6%92%AD%E6%94%BE%E5%99%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>影片播放器 | Rex 學習紀錄</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Rex 學習紀錄</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/20/%E5%BD%B1%E7%89%87%E6%92%AD%E6%94%BE%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/git_page_avatar.png">
+      <meta itemprop="name" content="Rex Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rex 學習紀錄">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          影片播放器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-20 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-20T00:00:00+08:00">2019-11-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-11-23 16:10:02" itemprop="dateModified" datetime="2022-11-23T16:10:02+08:00">2022-11-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="影片播放器"><a href="#影片播放器" class="headerlink" title="影片播放器"></a>影片播放器</h1><p>[TOC]</p>
+<p>利用MVC架構製作簡易的影片播放器以及常用的控制功能。</p>
+<h2 id="APP截圖"><a href="#APP截圖" class="headerlink" title="APP截圖"></a>APP截圖</h2><ul>
+<li><p><strong>影片選擇列表</strong></p>
+<p>  利用UICollecitonView將影片由列表方式呈現。</p>
+  <div style="margin:auto">
+      <img src="https://i.imgur.com/BGbIQEu.jpg"               height="500px">
+  </div>
+
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p><strong>直式影片播放器</strong><br>  點擊列表任一項目後可進入播放器頁面。</p>
+  <div>
+      <img src="https://i.imgur.com/SANWOmz.jpg"               height="500px">
+  </div>
+
+
+</li>
+</ul>
+<ul>
+<li><strong>橫式影片播放器</strong><br>  將螢幕轉向或點擊最右下角全螢幕按鈕可入橫式播放器，再次點擊則返回     直式。  <img src="https://i.imgur.com/wguGUKS.jpg"               width="50%">
+
+
+</li>
+</ul>
+<ul>
+<li><strong>播放器快轉/倒退特效</strong><br>  點擊按鈕或快速點兩下可快進或倒轉  <img src="https://i.imgur.com/v76ZKoJ.gif" width="50%">
+
+
+</li>
+</ul>
+<blockquote>
+<p>螢幕左方區域雙擊為倒轉，右方區域為快轉</p>
+</blockquote>
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><p>下方範例只挑幾個重點部分做說明，<a target="_blank" rel="noopener" href="https://github.com/rexjamesg/AVPlayerProject">完整的範例在這裡</a></p>
+<p>範例總共有幾大部分：</p>
+<ul>
+<li>資料格式</li>
+<li>影片列表</li>
+<li>播放器</li>
+</ul>
+<h3 id="資料格式"><a href="#資料格式" class="headerlink" title="資料格式"></a>資料格式</h3><p>由於此範例不是經由API讀取資料，且資料格式為固定的，所以使用列舉來製作資料來源的格式以便影片切換。</p>
+<h4 id="創一個列舉並定義值"><a href="#創一個列舉並定義值" class="headerlink" title="創一個列舉並定義值"></a>創一個列舉並定義值</h4><p>定義名稱可自行決定，這裡使用影片名稱來命名</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">VideoSourceType</span>:<span class="title">Int</span>, <span class="title">CaseIterable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> bigBuckBunny</span><br><span class="line">    <span class="keyword">case</span> elephantDream</span><br><span class="line">    <span class="keyword">case</span> forBiggerBlazes</span><br><span class="line">    <span class="keyword">case</span> forBiggerEscape</span><br><span class="line">    <span class="keyword">case</span> forBiggerFun</span><br><span class="line">    <span class="keyword">case</span> forBiggerJoyrides</span><br><span class="line">    <span class="keyword">case</span> forBiggerMeltdowns</span><br><span class="line">    <span class="keyword">case</span> sintel</span><br><span class="line">    <span class="keyword">case</span> subaruOutbackOnStreetAndDirt</span><br><span class="line">    <span class="keyword">case</span> tearsOfSteel</span><br><span class="line">    <span class="keyword">case</span> volkswagenGTIReview</span><br><span class="line">    <span class="keyword">case</span> weAreGoingOnBullrun</span><br><span class="line">    <span class="keyword">case</span> whatCareCanYouGetForAGrand</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VideoSource</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>遵循CaseIterable協議可以讓enum向陣列一樣使用。</p>
+</blockquote>
+<p>定義一個協議並列出我們影片需要的幾個參數。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">VideoDetail</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> description:<span class="type">String</span> &#123; <span class="keyword">get</span> &#125;    <span class="comment">//影片描述</span></span><br><span class="line">    <span class="keyword">var</span> sources:<span class="type">String</span> &#123; <span class="keyword">get</span> &#125;        <span class="comment">//影片來源       </span></span><br><span class="line">    <span class="keyword">var</span> subtitle:<span class="type">String</span> &#123; <span class="keyword">get</span> &#125;       <span class="comment">//副標題</span></span><br><span class="line">    <span class="keyword">var</span> title:<span class="type">String</span> &#123; <span class="keyword">get</span> &#125;          <span class="comment">//標題</span></span><br><span class="line">    <span class="keyword">var</span> fullImagePath:<span class="type">String</span> &#123; <span class="keyword">get</span> &#125;  <span class="comment">//圖片網址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用extension並讓VideoSourceType遵循這個協議。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">VideoSourceType</span>: <span class="title">VideoDetail</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> description:<span class="type">String</span> &#123;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> sources:<span class="type">String</span> &#123;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> subtitle:<span class="type">String</span> &#123;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> title:<span class="type">String</span> &#123;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> fullImagePath:<span class="type">String</span> &#123;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<strong>description</strong>、<strong>sources</strong>、<strong>subtitle</strong>、<strong>title</strong>做相同的判斷，依照列舉的項目回傳對應得資訊。</p>
+<p>以下為title的範例：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> title:<span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> .bigBuckBunny:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Big Buck Bunny&quot;</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> .elephantDream:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Elephant Dream&quot;</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> .forBiggerBlazes:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;For Bigger Blazes&quot;</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> .forBiggerEscape:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;For Bigger Escape&quot;</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> .forBiggerFun:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;For Bigger Fun&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">case</span> .forBiggerJoyrides:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;For Bigger Joyrides&quot;</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> .forBiggerMeltdowns:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;For Bigger Meltdowns&quot;</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> .sintel:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Sintel&quot;</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> .subaruOutbackOnStreetAndDirt:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Subaru Outback On Street And Dirt&quot;</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> .tearsOfSteel:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Tears of Steel&quot;</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> .volkswagenGTIReview:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Volkswagen GTI Review&quot;</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> .weAreGoingOnBullrun:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;We Are Going On Bullrun&quot;</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> .whatCareCanYouGetForAGrand:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;What care can you get for a grand?&quot;</span></span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>若有來自不同網域的圖片可利用switch判斷並加上對應的路徑。</p>
+<p>範例的路徑都一樣所以回傳同一個網域即可。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fullImagePath:<span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/&quot;</span><span class="operator">+</span>thumb</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由於有遵循CaseIterable協議，若有需求可以用if else來判斷並處理例外的網域。</p>
+<p>範例:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fullImagePath:<span class="type">String</span> &#123;    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">self</span> <span class="operator">==</span> .bigBuckBunny &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;https://aaa.com/&quot;</span><span class="operator">+</span>thumb   </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;https://bbb.com/&quot;</span><span class="operator">+</span>thumb</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<h4 id="定義model"><a href="#定義model" class="headerlink" title="定義model"></a>定義model</h4><p>列表資料結構</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Categories</span>:<span class="title">Codable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name:<span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> videos:[<span class="type">Video</span>] <span class="operator">=</span> []</span><br><span class="line">    <span class="keyword">var</span> count:<span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> videos.count</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Categories</span> </span>&#123;</span><br><span class="line">    <span class="comment">//定義一個函式，由輸入的索引回傳相對應的影片物件</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getVideo</span><span class="params">(index:Int)</span></span> -&gt; <span class="type">Video</span>? &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> index <span class="operator">&lt;</span> count &#123;</span><br><span class="line">            <span class="keyword">return</span> videos[index]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Codable協議：使資料類型可編碼（ encodable ）和可解碼 （ decodable ），用於與外部表示（ 例如：JSON ）相容。<br>例：  </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> data <span class="operator">=</span> <span class="keyword">try?</span> <span class="type">JSONEncoder</span>().encode(item)                       </span><br><span class="line">&#125; <span class="keyword">catch</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;                </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果沒有遵循Codable協議就不能使用JSONEncoder</p>
+</blockquote>
+<p>影片的資料結構</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Video</span>:<span class="title">Codable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> description:<span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> sources:<span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> subtitle:<span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> thumb:<span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> title:<span class="type">String</span>?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在VideoSource建立一個陣列來存放影片資料，設定期存取權限為get only</p>
+<blockquote>
+<p>存取權限(Access control) private 只有當前類別可以使用，private(set)能使其他檔案使用此參數，但無法改變其參數內容，若需要改變內容需要透過setter。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VideoSource</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private(set)</span> <span class="keyword">var</span> videos:[<span class="type">Video</span>] <span class="operator">=</span> []</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> sourceType <span class="keyword">in</span> <span class="type">VideoSourceType</span>.allCases &#123;</span><br><span class="line">            <span class="keyword">let</span> video <span class="operator">=</span> <span class="type">Video</span>.<span class="keyword">init</span>(description: sourceType.description, </span><br><span class="line">                                    sources: sourceType.sources, </span><br><span class="line">                                    subtitle: sourceType.subtitle, </span><br><span class="line">                                    thumb: sourceType.fullImagePath, </span><br><span class="line">                                    title: sourceType.title)</span><br><span class="line">            videos.append(video)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getVideos</span><span class="params">()</span></span> -&gt; <span class="type">Categories</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Categories</span>.<span class="keyword">init</span>(name: <span class="string">&quot;Movies&quot;</span>, videos: videos)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在大部份時候蘋果鼓勵使用 Struct，直到需要利用到 Class 才有的特性，像是需要使用到 Swift 的 Framework、Foundation 或是 UIkit，亦或是需要不斷的在各處繼承同一個父類別。</p>
+<blockquote>
+<p>structure 的使用定偏向儲存資料。<br>class 則是著重於流程控制，程式碼功能導向。</p>
+</blockquote>
+<h3 id="影片列表"><a href="#影片列表" class="headerlink" title="影片列表"></a>影片列表</h3><p>創建一個 ViewController 並繼承 BaseViewController 來實作影片列表。</p>
+<p>個人寫作習慣是會將專案內的 ViewController 繼承一個父類，裡面會有加入許多通用的函式，例如跳出警告視窗，設定上方導覽列等功能，可自行增加。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MovieListViewController</span>: <span class="title">BaseViewController</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">        <span class="comment">//實作UICollecitonView</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">MovieListViewController</span>: <span class="title">UICollectionViewDelegate</span>, <span class="title">UICollectionViewDataSource</span> </span>&#123;</span><br><span class="line">    <span class="comment">//MARK: ----- UICollectionViewDelegate &amp; UICollectionViewDataSource -----</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">collectionView</span><span class="params">(<span class="keyword">_</span> collectionView: UICollectionView, numberOfItemsInSection section: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="comment">//網格每一區有幾格</span></span><br><span class="line">        <span class="comment">//在這實作代理</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">collectionView</span><span class="params">(<span class="keyword">_</span> collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)</span></span> -&gt; <span class="type">UICollectionViewCell</span>     &#123;        </span><br><span class="line">        <span class="comment">//初始化以及設定重複使用的網格</span></span><br><span class="line">        <span class="comment">//在這實作代理</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">collectionView</span><span class="params">(<span class="keyword">_</span> collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)</span></span> &#123;        </span><br><span class="line">        <span class="comment">//網格被點擊後的事件</span></span><br><span class="line">        <span class="comment">//在這實作代理</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由於 UICollecitonView 為較基礎應用，故不在此篇重點，暫不贅述，完整專案請參考最下方程式碼連結。</p>
+</blockquote>
+<h3 id="播放器"><a href="#播放器" class="headerlink" title="播放器"></a>播放器</h3><p>實作一個AVPlayer的物件</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AVPlayerView</span>: <span class="title">UIView</span> </span>&#123;</span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init?</span>(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(coder: aDecoder)</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>(frame: <span class="type">CGRect</span>) &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(frame: frame)</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>制定幾個協議，將對其的操作透過代理模式傳給 PlayerViewController</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<p>基礎幾個參數</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AVPlayerView</span>: <span class="title">UIView</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">///代理</span></span><br><span class="line">    <span class="keyword">weak</span> <span class="keyword">var</span> delegate:<span class="type">AVPlayerViewDelegate</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="comment">///播放器</span></span><br><span class="line">    <span class="keyword">var</span> player : <span class="type">AVPlayer</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="comment">///播放影片時所需定義的畫面介面</span></span><br><span class="line">    <span class="keyword">var</span> avPlayerLayer : <span class="type">AVPlayerLayer</span>!</span><br><span class="line">    </span><br><span class="line">    <span class="comment">///影片播放的元素（可以更深入取得影片細部資訊）</span></span><br><span class="line">    <span class="keyword">var</span> playerItem:<span class="type">AVPlayerItem</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="comment">///是否正在播放</span></span><br><span class="line">    <span class="keyword">var</span> isPlaying:<span class="type">Bool</span> <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">///定期時間觀察者</span></span><br><span class="line">    <span class="keyword">var</span> timeObserverToken: <span class="keyword">Any</span><span class="operator">?</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">///目前播放的時間</span></span><br><span class="line">    <span class="keyword">var</span> currentSecond:<span class="type">Float64</span>? &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> time <span class="operator">=</span> player<span class="operator">?</span>.currentItem<span class="operator">?</span>.currentTime()         &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="type">CMTimeGetSeconds</span>(time)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init?</span>(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(coder: aDecoder)</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>(frame: <span class="type">CGRect</span>) &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(frame: frame)</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<strong>AVPlayerView內</strong>製作一個列舉，方便監聽播放器狀態時使用。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AVPlayerView</span>: <span class="title">UIView</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">///播放器裝態監聽的列舉</span></span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">PlayerObserverKey</span>:<span class="title">String</span> </span>&#123;</span><br><span class="line">        <span class="keyword">case</span> status</span><br><span class="line">        <span class="keyword">case</span> loadedTimeRanges</span><br><span class="line">        <span class="keyword">case</span> playbackBufferEmpty</span><br><span class="line">        <span class="keyword">case</span> playbackLikelyToKeepUp</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//----- 以下首略 -----</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下來開始初始化播放器，AVPlayerView 只吃一個外部參數，就是影片路徑，需要重複使用時，只需要代入不同的影片路徑。</p>
+<p>AVPlayerItem 設定影片路徑 -&gt; AVPlayerItem 影片播放元素給 AVPlayer 初始化 -&gt; 交給 AVPLayerLayer 設定播放畫面</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> 初始化播放器</span></span><br><span class="line"><span class="comment"> - Parameter urlString: 影片路徑、網址</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">setPlayer</span><span class="params">(urlSting:String)</span></span> &#123;</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">let</span> videoURL <span class="operator">=</span>  <span class="type">URL</span>(string: urlSting)<span class="operator">!</span></span><br><span class="line">    playerItem <span class="operator">=</span> <span class="type">AVPlayerItem</span>(url: videoURL)</span><br><span class="line">    </span><br><span class="line">    player <span class="operator">=</span> <span class="type">AVPlayer</span>(playerItem: playerItem)</span><br><span class="line">    </span><br><span class="line">    avPlayerLayer <span class="operator">=</span> <span class="type">AVPlayerLayer</span>(player: player)</span><br><span class="line">    avPlayerLayer.frame <span class="operator">=</span> <span class="keyword">self</span>.bounds</span><br><span class="line">    <span class="keyword">self</span>.layer.addSublayer(avPlayerLayer)    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>播放器有幾個需要監聽的事件，監聽後才能對狀態進行判斷並加以控制</p>
+<p><strong>1. 監聽播放結束</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//監聽播放結束</span></span><br><span class="line"><span class="type">NotificationCenter</span>.default.addObserver(<span class="keyword">self</span>, </span><br><span class="line">                                        selector: <span class="keyword">#selector</span>(playerDidFinishPlaying), </span><br><span class="line">                                        name: <span class="type">NSNotification</span>.<span class="type">Name</span>.<span class="type">AVPlayerItemDidPlayToEndTime</span>, </span><br><span class="line">                                        object: <span class="literal">nil</span>)</span><br></pre></td></tr></table></figure>
+<p>selector 對應的函式</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">///影片播放完畢</span></span><br><span class="line"><span class="keyword">@objc</span> <span class="function"><span class="keyword">func</span> <span class="title">playerDidFinishPlaying</span><span class="params">()</span></span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//在這裡暫停播放器</span></span><br><span class="line">    </span><br><span class="line">    delegate<span class="operator">?</span>.playerDidFinishPlaying(<span class="keyword">self</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>2. 監聽播放器狀態</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//監聽播放器狀態</span></span><br><span class="line">    player<span class="operator">?</span>.currentItem<span class="operator">?</span>.addObserver(<span class="keyword">self</span>, </span><br><span class="line">                                    forKeyPath: <span class="type">PlayerObserverKey</span>.status.rawValue, </span><br><span class="line">                                    options: .new, </span><br><span class="line">                                    context: <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>3. 緩衝，可用來獲取快取存了多少</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//緩衝，可用來獲取快取存了多少</span></span><br><span class="line">player<span class="operator">?</span>.currentItem<span class="operator">?</span>.addObserver(<span class="keyword">self</span>, </span><br><span class="line">                                forKeyPath: <span class="type">PlayerObserverKey</span>.loadedTimeRanges.rawValue, </span><br><span class="line">                                options: .new, </span><br><span class="line">                                context: <span class="literal">nil</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>4. 緩衝不夠，停止播放</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">      </span><br><span class="line"><span class="comment">//緩衝不夠，停止播放</span></span><br><span class="line">player<span class="operator">?</span>.currentItem<span class="operator">?</span>.addObserver(<span class="keyword">self</span>, </span><br><span class="line">                                forKeyPath: <span class="type">PlayerObserverKey</span>.playbackBufferEmpty.rawValue, </span><br><span class="line">                                options: .new, </span><br><span class="line">                                context: <span class="literal">nil</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>5. 緩衝足夠，繼續播放</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//緩衝足夠，手動播放</span></span><br><span class="line">player<span class="operator">?</span>.currentItem<span class="operator">?</span>.addObserver(<span class="keyword">self</span>, </span><br><span class="line">                                forKeyPath: <span class="type">PlayerObserverKey</span>.playbackLikelyToKeepUp.rawValue, </span><br><span class="line">                                options: .new, </span><br><span class="line">                                context: <span class="literal">nil</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>5. 監聽影片目前播放進度並傳給代理，提供給ViewController使用</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">///增加播放進度監聽</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addVideoObserver</span><span class="params">()</span></span> &#123;</span><br><span class="line">    timeObserverToken <span class="operator">=</span> player<span class="operator">?</span>.addPeriodicTimeObserver(forInterval: <span class="type">CMTimeMake</span>(value: <span class="number">1</span>, timescale: <span class="number">1</span>), queue: .main, using: &#123; (<span class="type">CMTime</span>) <span class="keyword">in</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">self</span>.player<span class="operator">!</span>.currentItem<span class="operator">?</span>.status <span class="operator">==</span> .readyToPlay &#123;</span><br><span class="line">            <span class="keyword">let</span> currentTime <span class="operator">=</span> <span class="type">CMTimeGetSeconds</span>(<span class="keyword">self</span>.player<span class="operator">!</span>.currentTime())</span><br><span class="line">            <span class="keyword">self</span>.delegate<span class="operator">?</span>.didUpdatePlayerCurrentTime(<span class="keyword">self</span>, time: currentTime)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在關閉播放器的時候要記得移除 timeObserverToken，否則聲音還會持續在背景播放。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">deinit</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> timeObserverToken <span class="operator">=</span> timeObserverToken &#123;</span><br><span class="line">        player<span class="operator">?</span>.removeTimeObserver(timeObserverToken)</span><br><span class="line">        <span class="keyword">self</span>.timeObserverToken <span class="operator">=</span> <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    player <span class="operator">=</span> <span class="literal">nil</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> avPlayerLayer <span class="operator">!=</span> <span class="literal">nil</span> &#123;</span><br><span class="line">        </span><br><span class="line">        avPlayerLayer.removeFromSuperlayer()</span><br><span class="line">        avPlayerLayer <span class="operator">=</span> <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="tags-程式碼"><a href="#tags-程式碼" class="headerlink" title="tags: 程式碼"></a>tags: <code>程式碼</code></h6>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AVPlayer/" rel="tag"># AVPlayer</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/04/%E7%A8%8B%E5%BC%8F%E7%A2%BC%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87/" rel="next" title="程式碼設計原則">
+      程式碼設計原則 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BD%B1%E7%89%87%E6%92%AD%E6%94%BE%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">影片播放器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#APP%E6%88%AA%E5%9C%96"><span class="nav-number">1.1.</span> <span class="nav-text">APP截圖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-number">1.2.</span> <span class="nav-text">程式碼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">資料格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%B5%E4%B8%80%E5%80%8B%E5%88%97%E8%88%89%E4%B8%A6%E5%AE%9A%E7%BE%A9%E5%80%BC"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">創一個列舉並定義值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%BE%A9model"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">定義model</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%B1%E7%89%87%E5%88%97%E8%A1%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">影片列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%92%AD%E6%94%BE%E5%99%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">播放器</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-number">1.2.3.0.0.1.</span> <span class="nav-text">tags: 程式碼</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Rex Lin"
+      src="/images/git_page_avatar.png">
+  <p class="site-author-name" itemprop="name">Rex Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/rexjamesg" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rexjamesg" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:rexjamesg@gmail.com" title="E-Mail → mailto:rexjamesg@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rex Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
